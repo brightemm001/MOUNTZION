@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://brightemm001.github.io/mount-zion/sitemap.xml
