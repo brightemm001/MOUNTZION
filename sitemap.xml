@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://brightemm001.github.io/mount-zion/</loc></url>
-  <url><loc>https://brightemm001.github.io/mount-zion/prayers.html</loc></url>
-  <url><loc>https://brightemm001.github.io/mount-zion/devotional.html</loc></url>
-  <url><loc>https://brightemm001.github.io/mount-zion/sermons.html</loc></url>
-  <url><loc>https://brightemm001.github.io/mount-zion/connect.html</loc></url>
+  <url><loc>https://mountzion-lemon.vercel.app/</loc></url>
+  <url><loc>https://mountzion-lemon.vercel.app/devotional.html</loc></url>
+  <url><loc>https://mountzion-lemon.vercel.app/prayers.html</loc></url>
+  <url><loc>https://mountzion-lemon.vercel.app/sermons.html</loc></url>
+  <url><loc>https://mountzion-lemon.vercel.app/connect.html</loc></url>
+  <url><loc>https://mountzion-lemon.vercel.app/giving.html</loc></url>
 </urlset>

@@ -1,0 +1,31 @@
+MOUNT ZION WEBSITE UPDATE
+
+WHAT'S INCLUDED
+- Responsive navigation with a menu dropdown on small screens.
+- English/Yoruba prayer plans.
+- Daily English/Yoruba devotionals for October 1–31, 2026.
+- A giving page with Ecobank transfer details and a secure card-checkout request path.
+- A filtered video library with 12 recordings and MP3/MP4 downloads.
+- Updated sitemap and page metadata.
+
+APPLY THE UPDATE
+1. Extract this ZIP into your existing project folder:
+   C:\Users\HP\Documents\MY PROJECT\MZION
+2. Allow the existing files to be replaced and merge the media folder. Keep the existing assets folder and all other files already in your project.
+3. Open PowerShell in that folder and run:
+
+   git status
+   git add .
+   git commit -m "Update Mount Zion website and media"
+   git push
+
+If your Vercel project is connected to the brightemm001/MOUNTZION GitHub repository, Vercel will build a deployment after the push. Check the deployment result in Vercel before sharing the update.
+
+PAYMENTS
+The transfer option shows the Ecobank details supplied for the site and lets visitors copy the account number. A website cannot reliably open a prepared transfer in whichever banking app a visitor uses, so visitors complete the transfer in their chosen bank app. The card option asks the church for its official secure checkout link on WhatsApp. This page does not collect card numbers, PINs, or CVVs. Direct card checkout can be connected after the church provides a payment provider checkout URL.
+
+MEDIA
+The 12 accessible recordings are included as optimized MP4s and MP3s. The missing upload Snapchat-1783364527(1).mp4 was not available to process. Filter labels were assigned from visual review; check that the labels match the spoken content before publishing.
+
+VERCEL PROJECT NAME
+The canonical URLs and sitemap currently use mountzion-lemon.vercel.app. If you later rename the Vercel project, replace that hostname in the canonical links, sitemap.xml, and robots.txt with the final deployed hostname, then push again.

@@ -245,6 +245,33 @@ const plans={
     ]
   }
 };
-let day=0;const select=document.getElementById('category');Object.keys(plans).forEach(k=>{const option=document.createElement('option');option.value=k;option.textContent=k;select.append(option)});
-function render(){const p=plans[select.value];document.getElementById('plan-intro').textContent=`${select.value}: ${p.themes.join(' · ')}.`;document.getElementById('day-title').textContent=`Night ${day+1}: ${p.themes[day]}`;document.getElementById('day-ref').textContent=`Read and reflect: ${p.ref[day]}`;const list=document.getElementById('points');list.replaceChildren(...p.points.slice(day*7,day*7+7).map(t=>{const li=document.createElement('li');li.textContent=t;return li}));document.querySelectorAll('[data-day]').forEach(b=>{b.classList.toggle('active',Number(b.dataset.day)===day);b.setAttribute('aria-pressed',String(Number(b.dataset.day)===day))})}
-select.addEventListener('change',()=>{day=0;render()});document.querySelectorAll('[data-day]').forEach(b=>b.addEventListener('click',()=>{day=Number(b.dataset.day);render()}));render();
+let day=0,prayerLanguage='en';
+const select=document.getElementById('category');
+const categories=Object.keys(plans);
+const enUi={kicker:'Pray with purpose',title:'Three nights of prayer',description:'Choose a concern. Each plan has seven prayer points per night, for 21 points across three nights. Pray at your own pace and return for the next night.',focus:'Choose your prayer focus',night:'Night',read:'Read and reflect:',language:'Prayer language',note:'These points are a guide for personal prayer. You can add your own words and Scripture reading. For a personal request,',message:'message the church',nights:['Night 1','Night 2','Night 3']};
+function populateCategories(){select.replaceChildren(...categories.map(k=>{const option=document.createElement('option');option.value=k;option.textContent=prayerLanguage==='yo'?mountZionPrayerYoruba.categories[k]:k;return option}))}
+function render(){
+ const category=select.value||categories[0],p=plans[category],yo=prayerLanguage==='yo';
+ const themes=yo?mountZionPrayerYoruba.themes[category]:p.themes;
+ const categoryName=yo?mountZionPrayerYoruba.categories[category]:category;
+ const ui=yo?mountZionPrayerYoruba.ui:enUi;
+ document.documentElement.lang=yo?'yo':'en';
+ document.getElementById('prayer-kicker').textContent=ui.kicker;
+ document.getElementById('prayer-title').textContent=ui.title;
+ document.getElementById('prayer-description').textContent=ui.description;
+ document.getElementById('prayer-focus-label').textContent=ui.focus;
+ document.getElementById('prayer-language-label').textContent=ui.language;
+ document.getElementById('prayer-note-intro').textContent=ui.note;
+ document.getElementById('prayer-note-link').textContent=ui.message;
+ document.getElementById('plan-intro').textContent=yo?`${ui.plan} ${categoryName.toLocaleLowerCase('yo-NG')}. ${themes.join(' · ')}.`:`${categoryName}: ${themes.join(' · ')}.`;
+ document.getElementById('day-title').textContent=`${ui.nights[day]}: ${themes[day]}`;
+ document.getElementById('day-ref').textContent=`${ui.read} ${p.ref[day]}`;
+ const allPoints=yo?mountZionPrayerYoruba.points.map(t=>t.replaceAll('{focus}',mountZionPrayerYoruba.focus[category])):p.points;
+ document.getElementById('points').replaceChildren(...allPoints.slice(day*7,day*7+7).map(t=>{const li=document.createElement('li');li.textContent=t;return li}));
+ document.querySelectorAll('[data-day]').forEach(b=>{const active=Number(b.dataset.day)===day;b.textContent=ui.nights[Number(b.dataset.day)];b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active))});
+ document.querySelectorAll('[data-prayer-language]').forEach(b=>{const active=b.dataset.prayerLanguage===prayerLanguage;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active))});
+}
+select.addEventListener('change',()=>{day=0;render()});
+document.querySelectorAll('[data-day]').forEach(b=>b.addEventListener('click',()=>{day=Number(b.dataset.day);render()}));
+document.querySelectorAll('[data-prayer-language]').forEach(b=>b.addEventListener('click',()=>{prayerLanguage=b.dataset.prayerLanguage;populateCategories();render()}));
+populateCategories();render();
